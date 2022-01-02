@@ -1,0 +1,17 @@
+{
+  "name": "ecommerce-backend",
+  "version": "1.0.0",
+  "description": "backend for Ecommerce",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Ecommerce",
+    "api",
+    "backend",
+    "poject"
+  ],
+  "author": "Tanmay Gupta",
+  "license": "ISC"
+}
