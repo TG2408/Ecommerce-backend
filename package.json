@@ -13,5 +13,10 @@
     "poject"
   ],
   "author": "Tanmay Gupta",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "mongoose": "^6.1.4"
+  }
 }
