@@ -1,6 +1,7 @@
 // modules
 const express = require('express');
 const env = require("dotenv");
+const bodyParser = require('body-parser');
 
 // initializing express
 const app = express();
@@ -8,7 +9,7 @@ const app = express();
 // Environment variables
 env.config();
 
-app.use(express.json());
+app.use(bodyParser());
 
 app.get('/', (req, res, next) => {
     res.status(200).json({
