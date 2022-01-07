@@ -10,6 +10,9 @@ const app = express();
 // Environment variables
 env.config();
 
+// routes 
+const userRoutes = require('./routes/user');
+
 // mongoDB connection
 // mongodb+srv://root:<password>@cluster0.qad4m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 mongoose.connect(
@@ -19,19 +22,10 @@ mongoose.connect(
 });
 
 
-app.use(bodyParser());
+// adding a middleware 
+app.use(bodyParser());              //to parse the input (req) json data         
+app.use('/api', userRoutes);
 
-app.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: "Hello from server"
-    })
-})
-
-app.post('/data', (req, res, next) => {
-    res.status(200).json({
-        message: req.body
-    })
-});
 
 app.listen(process.env.PORT, () => {
     console.log(`server is running on ${process.env.PORT}`);
