@@ -1,9 +1,10 @@
-const User = require('../models/user');
-const jwt = require('jsonwebtoken');
-const env = require('dotenv'); 
+const User = require('../models/user');     // importing user module
+const jwt = require('jsonwebtoken');        // generates token for each user auth in further api request 
+const env = require('dotenv');              // npm package for .env file
 
-env.config();
+env.config();           // configuring .env variables
 
+// controler function for signup or create new user
 exports.signup = (req, res) => {
     User.findOne({ email: req.body.email })
     .exec((error, user) => {
@@ -42,6 +43,7 @@ exports.signup = (req, res) => {
     })
 };
 
+// controller function that takes user email and password and return token on successfull user auth 
 exports.signin = (req, res) => {
     User.findOne({email: req.body.email})
     .exec((error, user) => {
@@ -65,3 +67,11 @@ exports.signin = (req, res) => {
         }
     })
 };
+
+//
+exports.requireSignin = (req, res, next) => {
+    const token = req.headers.authorization.split(" ")[1];
+    const user = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = user;        // we are attaching a new property to req object so that we can access user in next()
+    next();
+}
