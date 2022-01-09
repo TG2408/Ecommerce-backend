@@ -32,15 +32,15 @@ exports.signup = (req, res) => {
                 return res.status(400).json({
                     message: "Something went wrong"
                 });
-            }
+            };
 
             if (data) {
                 return res.status(201).json({
                     message: "user created successfully"
                 });
-            }
-        })
-    })
+            };
+        });
+    });
 };
 
 // controller function that takes user email and password and return token on successfull user auth 
@@ -49,7 +49,6 @@ exports.signin = (req, res) => {
     .exec((error, user) => {
         if (error) return res.status(400).json({ error });
         if (user) {
-            console.log(user);
             if(user.authenticate(req.body.password)) {
                 const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
                 const { _id, fistname, lastname, email, role, fullName } = user;
@@ -65,7 +64,7 @@ exports.signin = (req, res) => {
         } else {
             return res.status(400).json({ message: "Something went wrong" });
         }
-    })
+    });
 };
 
 //

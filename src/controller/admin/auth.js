@@ -40,8 +40,8 @@ exports.signup = (req, res) => {
                     message: "Admin created successfully"
                 });
             }
-        })
-    })
+        });
+    });
 };
 
 // controller function that takes user email and password and return token on successfull user auth 
@@ -65,7 +65,7 @@ exports.signin = (req, res) => {
         } else {
             return res.status(400).json({ message: "Something went wrong" });
         }
-    })
+    });
 };
 
 //
