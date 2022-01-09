@@ -11,7 +11,7 @@ const app = express();
 env.config();
 
 // routes 
-const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/auth');
 
 // mongoDB connection
 // mongodb+srv://root:<password>@cluster0.qad4m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
@@ -29,7 +29,7 @@ mongoose.connect(
 
 // adding a middleware 
 app.use(bodyParser());              //to parse the input (req) json data         
-app.use('/api', userRoutes);
+app.use('/api', authRoutes);
 
 
 app.listen(process.env.PORT, () => {
