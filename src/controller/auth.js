@@ -5,7 +5,6 @@ const env = require('dotenv');
 env.config();
 
 exports.signup = (req, res) => {
-
     User.findOne({ email: req.body.email })
     .exec((error, user) => {
         if (user) return res.status(400).json({
@@ -51,12 +50,10 @@ exports.signin = (req, res) => {
             console.log(user);
             if(user.authenticate(req.body.password)) {
                 const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-                const { fistname, lastname, email, role, fullName } = user;
+                const { _id, fistname, lastname, email, role, fullName } = user;
                 res.status(200).json({
                     token,
-                    user: {
-                        fistname, lastname, email, role, fullName
-                    }
+                    user: { _id, fistname, lastname, email, role, fullName }
                 });
             } else {
                 return res.status(400).json({
@@ -67,4 +64,4 @@ exports.signin = (req, res) => {
             return res.status(400).json({ message: "Something went wrong" });
         }
     })
-}
+};
