@@ -21,5 +21,6 @@ exports.isRequestValidated = (req, res, next) => {
         return res.status(400).json({
             error: errors.array()[0].msg
         })
-    }
+    };
+    next();
 };
