@@ -1,17 +1,11 @@
 const User = require('../models/user');     // importing user module
 const jwt = require('jsonwebtoken');        // generates token for each user auth in further api request 
 const env = require('dotenv');              // npm package for .env file
-const { validationResult } = require('express-validator'); 
 
 env.config();           // configuring .env variables
 
 // controler function for signup or create new user
 exports.signup = (req, res) => {
-
-    const errors = validationResult(req);
-    res.status(400).json({
-        errors: errors.array()
-    })
 
     User.findOne({ email: req.body.email })
     .exec((error, user) => {
