@@ -4,11 +4,11 @@ const router = express.Router();
 
 // self defined modules
 const { signup, signin } = require('../controller/auth');
-const { validateRequest, isRequestValidated } = require('../validators/auth');
+const { validateSignupRequest, isRequestValidated, validateSigninRequest } = require('../validators/auth');
 
 
-router.post('/signin', signin);
-router.post('/signup', validateRequest, isRequestValidated, signup);
+router.post('/signin', validateSigninRequest, isRequestValidated, signin);
+router.post('/signup', validateSignupRequest, isRequestValidated, signup);
 
 // router.post('/profile', requireSignin,(req, res) => {
 //      res.status(200).json({ user: req.user });
