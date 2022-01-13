@@ -2,7 +2,7 @@
   "name": "ecommerce-backend",
   "version": "1.0.0",
   "description": "backend for Ecommerce",
-  "main": "index.js",
+  "main": "index.server.js",
   "scripts": {
     "start": "nodemon ./src/index.server.js"
   },

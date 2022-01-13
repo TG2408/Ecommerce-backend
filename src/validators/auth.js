@@ -1,3 +1,6 @@
+// validators check if the the incoming req object contains correct data according
+// to our need, and then pass the data to controller
+
 const { check, validationResult } = require('express-validator');
 
 exports.validateSigninRequest = [

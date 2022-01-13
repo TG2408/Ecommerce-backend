@@ -2,7 +2,7 @@ const User = require('../models/user');     // importing user module
 const jwt = require('jsonwebtoken');        // generates token for each user auth in further api request 
 const env = require('dotenv');              // npm package for .env file
 
-env.config();           // configuring .env variables
+env.config();                               // configuring .env variables
 
 // controler function for signup or create new user
 exports.signup = (req, res) => {
