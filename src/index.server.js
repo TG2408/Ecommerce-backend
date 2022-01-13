@@ -1,7 +1,6 @@
 // importing package
 const express = require('express');
 const env = require("dotenv");                  // dotenv is used to include .env key and values
-const bodyParser = require('body-parser');      // for parsing incoming json data
 const mongoose = require('mongoose');          // for connecting to db & designing database schema 
 
 // initializing express
@@ -28,7 +27,7 @@ mongoose.connect(
 });
 
 // adding a middleware 
-app.use(bodyParser.json());         // to parse the input (req) json data         
+app.use(express.json());         // to parse the input (req) json data         
 app.use('/api', authRoutes);        // adding /api routes middleware
 app.use('/api', adminRoutes);
 

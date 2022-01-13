@@ -53,10 +53,11 @@ exports.signin = (req, res) => {
         if (user) {
             if(user.authenticate(req.body.password)) {
                 const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-                const { _id, fistname, lastname, email, role, fullName } = user;
+                const { _id, firstname, lastname, email, role, fullName } = user;
+                console.log(user);
                 res.status(200).json({
                     token,
-                    user: { _id, fistname, lastname, email, role, fullName }
+                    user: { _id, firstname, lastname, email, role, fullName }
                 });
             } else {
                 return res.status(400).json({
@@ -69,10 +70,3 @@ exports.signin = (req, res) => {
     });
 };
 
-//
-exports.requireSignin = (req, res, next) => {
-    const token = req.headers.authorization.split(" ")[1];
-    const user = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = user;        // we are attaching a new property to req object so that we can access user in next()
-    next();
-}
