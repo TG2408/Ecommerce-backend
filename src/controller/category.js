@@ -25,7 +25,6 @@ exports.addCategory =  (req, res) => {
 };
 
 exports.getCategory = (req, res) => {
-    console.log("lal")
     Category.find({})
     .exec((error, categories) => {
 
