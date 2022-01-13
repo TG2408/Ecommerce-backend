@@ -5,8 +5,9 @@ const router = express.Router();
 const Category = require('../models/category');
 
 // importing category controller
-const { addCategory } = require('../controller/category');
+const { addCategory, getCategory } = require('../controller/category');
 
 router.post('/category/create', addCategory);
+router.get('/category/getCategory', getCategory);
 
 module.exports = router;
