@@ -1,18 +1,15 @@
 const express = require('express');
-
-// import commonn middleware module
-const { requireSignin, adminMiddleware } = require('../common-middleware/index');
-
-// importing product model
-const Product = require('../models/product');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/'})
 
 // initializing express router
 const router = express.Router();
 
-router.post('/product/create', requireSignin, adminMiddleware, (req, res) => {
 
-    res.status(200).json({ message: "product working" });
+// import middleware module
+const { requireSignin, adminMiddleware } = require('../common-middleware/index');
+const { createProduct } = require('../controller/product');
 
-});
+router.post('/product/create', requireSignin, adminMiddleware, upload.single('productPicture') , createProduct);
 
 module.exports = router;
