@@ -10,9 +10,10 @@ const app = express();
 env.config();
 
 // importing routes 
-const authRoutes = require('./routes/auth');
-const adminRoutes = require('./routes/admin/auth');
-const categoryRoutes = require('./routes/category');
+const authRoutes = require('./routes/auth');                // importing auth routes
+const adminRoutes = require('./routes/admin/auth');         // importing admin routes
+const categoryRoutes = require('./routes/category');        // importing category routes
+const productRoutes = require('./routes/product');          // importing product routes
 
 // mongoDB connection
 // mongodb+srv://root:<password>@cluster0.qad4m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority // Mongo connection string
@@ -27,11 +28,12 @@ mongoose.connect(
     console.log("Database Connected");
 });
 
-// adding a middleware 
+// adding a middleware for above included routes models
 app.use(express.json());              
-app.use('/api', authRoutes);  
+app.use('/api', authRoutes);                               
 app.use('/api', adminRoutes);
 app.use('/api', categoryRoutes);
+app.use('/api', productRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`server is running on ${process.env.PORT}`);

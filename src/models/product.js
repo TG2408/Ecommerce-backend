@@ -30,12 +30,15 @@ const productSchema = new mongoose.Schema({
     ],
     reviews: [
         {
-            userId: mongoose.Schema.Types.ObjectId, ref: "User",
+            userId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            },
             reviews: String
         }
     ],
-    category: { type: mongoose.Schema.Types.ObjectId, ref="Category" } ,
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref='User' },
+    category: { type: mongoose.Schema.Types.ObjectId, ref:"Category" } ,
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref:'User' },
     updatedAt: Date
 
 }, { timestamps: true });
